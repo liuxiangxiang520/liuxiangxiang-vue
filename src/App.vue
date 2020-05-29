@@ -1,49 +1,54 @@
 <template>
-  <div>
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对Vue的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-        <Add :addComment="addComment"/>
-        <List :comments="comments" :deleteComment="deleteComment"/>
+ <div class="todo-container">
+    <div class="todo-wrap">
+     <Header :addTodo="addTodo"></Header>
+     <Main :todos="todos" :updateOne="updateOne" :deleteOne="deleteOne"></Main>
+     <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import Add from './components/Add'
-import List from '@/components/List'
+import Header from '@/components/Header'
+import Main from '@/components/Main'
+import Footer from '@/components/Footer'
 export default {
-    components:{
-        Add,
-        List
+    components: {
+      Header,
+      Main,
+      Footer
     },
     data(){
       return {
-        comments:[
-          {id:1,username:'欧阳锋',content:'Vue真棒'},
-          {id:2,username:'赵丽颖',content:'Vue666'},
-          {id:3,username:'郭德纲',content:'Vue还不错'}
+        todos:[
+          {id:1,content:'抽烟',isOver:true},
+          {id:2,content:'喝酒',isOver:false},
+          {id:3,content:'烫头',isOver:false},
         ]
       }
     },
-    methods:{
-      addComment(obj){
-        this.comments.unshift(obj)//往comments头部添加一条数据
+    methods: {
+      addTodo(obj){
+        this.todos.unshift(obj)
       },
-      deleteComment(index){
-        this.comments.splice(index,1)//从comments内部删除指定下标的那一个数据
+      updateOne(index,val){
+        this.todos[index].isOver = val
+      },
+      deleteOne(index){
+        this.todos.splice(index,1)
       }
-    }
-
-};
+    },
+}
 </script>
-
 <style scoped>
+/*app*/
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
 </style>
