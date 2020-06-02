@@ -1,41 +1,39 @@
 <template>
 <div>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="incrementIfOdd">{{count}}</button>
-    <button @click="incrementAsync">{{count}}</button>
-    <p>4倍的count {{currenCount}}</p>
+     <div class="container">
+        <div class="page-header">
+            <h1>路由组件的练习</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-stacked col-md-6" role="tablist">
+                <li role="presentation" class="active">
+                    <!-- 路由连接 -->
+                    <router-link to="/home" aria-controls="home" role="tab" data-toggle="tab">Home</router-link>
+                    <!-- <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a> -->
+                </li>
+                <li role="presentation">
+                    <router-link to="/about" aria-controls="About" role="tab" data-toggle="tab">About</router-link>
+                    <!-- <a href="#About" aria-controls="About" role="tab" data-toggle="tab">About</a> -->
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content col-md-6">
+                <!-- 显示和路径对应组件的地方 -->
+                <router-view></router-view>
+
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
 <script type="text/ecmascript-6">
-import {mapActions,mapMutations,mapGetters,mapState} from 'vuex'
+
 export default {
-    // data(){
-    //     return {
-    //         count:0
-    //     }
-    // },
-    methods: {
-        // increment(){
-        //     this.$store.commit('increment')
-        // },
-        // decrement(){
-        //     this.$store.commit('decrement')
-        // },
-        // incrementIfOdd(){
-        //     this.$store.dispatch('incrementIfOdd')
-        // },
-        // incrementAsync(){
-        //     this.$store.dispatch('incrementAsync')
-        // }
-        ...mapMutations(['increment','decrement']),
-        ...mapActions(['incrementIfOdd','incrementAsync']),
-    },
-    computed: {
-        ...mapState(['count']),
-        ...mapGetters(['currentCount'])
-    },
+    
 }
 </script>
 
