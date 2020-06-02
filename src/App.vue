@@ -22,7 +22,10 @@
             <!-- Tab panes -->
             <div class="tab-content col-md-6">
                 <!-- 显示和路径对应组件的地方 -->
-                <router-view></router-view>
+                <keep-alive include="Home">
+                    <router-view></router-view>
+                </keep-alive>
+                
 
             </div>
         </div>

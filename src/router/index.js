@@ -9,6 +9,7 @@ import News from '@/views/News'
 import MessageDetail from '@/views/MessageDetail'
 import NewsDetail from '@/views/NewsDetail'
  export default new VueRouter({
+     mode:'history',
       //定义路由
       routes:[
         //每个路由是一个对象
@@ -43,11 +44,11 @@ import NewsDetail from '@/views/NewsDetail'
                             component:NewsDetail,
                             props(route){
                                 return {
-                                    newId:route.params.newsId,
+                                    newsId:route.params.newsId,
                                     newsContent:route.query.newsContent
                                 }
                             },
-                            name:'newInfo'
+                            name:'newsInfo'
                         }
                     ]
                 },

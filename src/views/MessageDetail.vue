@@ -24,7 +24,22 @@ export default {
         return {
             title:""
         }
-    }
+    },
+    mounted() {
+        this.show()
+    },
+    watch: {
+        $route(newVal,oldVal) {
+            this.show()
+        }
+    },
+    methods: {
+        show(){
+            setTimeout(() => {
+                this.title = msgTitles.find(item => item.id === this.msgId * 1).title;
+            },1000)
+        }
+    },
 }
 </script>
 

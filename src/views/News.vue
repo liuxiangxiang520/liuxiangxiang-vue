@@ -5,10 +5,13 @@
             <router-link to="/home/news/info"></router-link>
             {{n.content}}
             <button type="button" class="btn btn-primary" data-toggle="button"
-                aria-pressed="false" autocomplete="off">{{n.id}}
+                aria-pressed="false" autocomplete="off"
+                @click="hanlerJump(n)"
+                >{{n.id}}
             </button>
         </li>
     </ul>
+    <button @click="$router.back()">返回</button>
     <div class="alert alert-success" role="alert">
        <router-view></router-view>
     </div>
@@ -25,7 +28,13 @@ export default {
                 {id:3,content:'newsThree'},
             ]
         }
-    }
+    },
+    methods: {
+        hanlerJump(n){
+            // this.$router.replace({name:'newsInfo',params:{newsId:n.id},query:{newsContent:n.content}})
+            this.$router.push({name:'newsInfo',params:{newsId:n.id},query:{newsContent:n.content}})
+        }
+    },
 }
 </script>
 

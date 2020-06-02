@@ -7,7 +7,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'main.js',
+    publicPath: '/'// 引入打包的文件时路径以/开头
   },
   module: {
     rules: [
@@ -66,6 +67,21 @@ module.exports = {
       port:8020,
       open:true,
       quiet:true,
+      proxy: {
+        '/api': {//这个/api其实是为了告诉代理，以后什么样的请求，需要给我代理转发
+            target: 'http://localhost:4000',
+            //转发的目标地址，不需要路径，因为转发的时候会把发送请求的路径默认频道目标后面
+            //我们发http://localhost:8080/api/users/info
+            //最终转发的目标会变为http://localhost:4000/api/users/info
+
+            pathRewrite: {'^/api' : ''},
+            //真正的目标地址应该是http://localhost:4000/users/info
+            //这一行在干的活就是把/api去掉，不就是真正的目标地址？
+
+            changeOrigin: true, // 支持跨域, 如果协议/主机也不相同, 必须加上
+        }
+    },
+    historyApiFallback: true,// 任意的 404 响应都被替代为 index.html 备胎
   },
   devtool:"cheap-module-eval-source-map",
 
